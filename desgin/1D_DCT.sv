@@ -21,24 +21,24 @@ module fastDCT8(
   assign b[3] = $signed(x[3]) - $signed(x[4]);
 
   assign t18[0] = (($signed(b[0]) << 3) + $signed(b[0])) << 1;
-  assign t50[0] = (($signed(b[0]) << 4) + ($signed(t18[0]) >> 1)) << 1;
+  assign t50[0] = (($signed(b[0]) << 4) + ($signed(t18[0]) >>> 1)) << 1;
   assign t75[0] = $signed(t50[0]) + ($signed(t50[0]) << 1);
-  assign t89[0] = (($signed(b[0]) << 6) + ($signed(t50[0]) >> 1));
+  assign t89[0] = (($signed(b[0]) << 6) + ($signed(t50[0]) >>> 1));
 
   assign t18[1] = (($signed(b[1]) << 3) + $signed(b[1])) << 1;
-  assign t50[1] = (($signed(b[1]) << 4) + ($signed(t18[1]) >> 1)) << 1;
+  assign t50[1] = (($signed(b[1]) << 4) + ($signed(t18[1]) >>> 1)) << 1;
   assign t75[1] = $signed(t50[1]) + ($signed(t50[1]) << 1);
-  assign t89[1] = (($signed(b[1]) << 6) + ($signed(t50[1]) >> 1));
+  assign t89[1] = (($signed(b[1]) << 6) + ($signed(t50[1]) >>> 1));
 
   assign t18[2] = (($signed(b[2]) << 3) + $signed(b[2])) << 1;
-  assign t50[2] = (($signed(b[2]) << 4) + ($signed(t18[2]) >> 1)) << 1;
+  assign t50[2] = (($signed(b[2]) << 4) + ($signed(t18[2]) >>> 1)) << 1;
   assign t75[2] = $signed(t50[2]) + ($signed(t50[2]) << 1);
-  assign t89[2] = (($signed(b[2]) << 6) + ($signed(t50[2]) >> 1));
+  assign t89[2] = (($signed(b[2]) << 6) + ($signed(t50[2]) >>> 1));
 
   assign t18[3] = (($signed(b[3]) << 3) + $signed(b[3])) << 1;
-  assign t50[3] = (($signed(b[3]) << 4) + ($signed(t18[3]) >> 1)) << 1;
+  assign t50[3] = (($signed(b[3]) << 4) + ($signed(t18[3]) >>> 1)) << 1;
   assign t75[3] = $signed(t50[3]) + ($signed(t50[3]) << 1);
-  assign t89[3] = (($signed(b[3]) << 6) + ($signed(t50[3]) >> 1));
+  assign t89[3] = (($signed(b[3]) << 6) + ($signed(t50[3]) >>> 1));
 
   //not sure if 0 2 4 and 6 are correct
   assign y[0] = ($signed(a[0])   + $signed(a[1])   + $signed(a[2])   + $signed(a[3])) << 6;
