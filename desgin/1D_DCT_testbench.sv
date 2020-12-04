@@ -13,7 +13,7 @@ module testBench();
   reg signed [17:0] y6;
   reg signed [17:0] y7;
 
-  fastDCT8 dct(.x(x), .y(y));
+  fastDCT8 #(.N(8)) dct(.x(x), .y(y));
 
   assign y0 = y[0];
   assign y1 = y[1];
