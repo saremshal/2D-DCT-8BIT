@@ -28,11 +28,11 @@ for j=1:1000
         for i=0:63
             xVal = floor(i/8)+1;
             yVal = mod(i,8)+1;
-            fprintf(fileID,'%d ', X(xVal,yVal)*2^n );
+            fprintf(fileID,'%s ', dec2hex( X(xVal,yVal)*2^n,3) );
         end
 
     %writing Y values
-        Y = round( (X) );
+        Y = round( dct(X) );
         
         
         %printing Y values in document
@@ -46,7 +46,7 @@ for j=1:1000
             if( Y(xVal,yVal) < minVal)
                 Y(xVal,yVal) = minVal;
             end
-            fprintf(fileID,'%d ', Y(xVal,yVal)*2^n );
+            fprintf(fileID,'%s ', dec2hex( Y(xVal,yVal)*2^n,3 ) );
         end        
     %printing new line for next x and y 
     fprintf(fileID,'\n'); 
