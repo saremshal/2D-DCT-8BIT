@@ -42,7 +42,7 @@ module TwoD_DCT_tb();
     
     initial
     begin
-        fd_in = $fopen( "C:/Users/Josh/Dropbox/VLSI/Project4/2D-DCT-8BIT/testbench/stimTest_forJoshOnly.txt", "r" );
+        fd_in = $fopen( "C:/Users/Josh/Dropbox/VLSI/Project4/2D-DCT-8BIT/testbench/stimV1.txt", "r" );
         if (fd_in == 0)
         begin
             $display( "Couldn't open file for read" );
@@ -269,7 +269,7 @@ module TwoD_DCT_tb();
     // Instantiate DUT
     //
 
-    tbStimVerify u_tbStimVerify
+    TwoDDCT u_TwoDDCT
     (
         .clock      (clock      ),
         .reset    (reset    ),

@@ -3,16 +3,16 @@ module fastDCT8
     N = 8
 )
 (
-  input signed [N:0]x [7 :0], //QN.0
-  output wire [N+9:0]y [7 :0]   //Q(N+9).0
+  input signed [7 :0][N:0]x, //QN.0
+  output wire [7 :0][N+9:0]y    //Q(N+9).0
 );
 
-  reg signed [N+1:0]a [3:0];
-  reg signed [N+1:0]b [3:0];
-  reg signed [N+6:0]t18 [3:0];
-  reg signed [N+7:0]t50 [3:0];
-  reg signed [N+8:0]t75 [3:0];
-  reg signed [N+8:0]t89 [3:0];
+  reg signed [3:0][N+1:0]a ;
+  reg signed [3:0][N+1:0]b ;
+  reg signed [3:0][N+6:0]t18 ;
+  reg signed [3:0][N+7:0]t50 ;
+  reg signed [3:0][N+8:0]t75 ;
+  reg signed [3:0][N+8:0]t89 ;
 
   assign a[0] = $signed(x[0]) + $signed(x[7]);
   assign a[1] = $signed(x[1]) + $signed(x[6]);
