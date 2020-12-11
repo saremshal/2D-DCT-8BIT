@@ -3,17 +3,17 @@ module fastDCT8
     N = 8
 )
 (
-  input signed [N:0]   x [7 :0], //QN.0
-  output wire  [N+9:0] y [7 :0]   //Q(N+9).0
+  input signed [7 :0][N:0]x, //QN.0
+  output wire  [7 :0][N+9:0]y    //Q(N+9).0
 );
 
-  reg signed [N+1:0]a [3:0];
-  reg signed [N+1:0]b [3:0];
-  reg signed [N+6:0]t18 [3:0];
-  reg signed [N+7:0]t50 [3:0];
-  reg signed [N+8:0]t75 [3:0];
-  reg signed [N+8:0]t89 [3:0];
-  reg signed [N+9:0]DCT4_OUTPUT [3:0];
+  reg signed [3:0][N+1:0]a ;
+  reg signed [3:0][N+1:0]b ;
+  reg signed [3:0][N+6:0]t18 ;
+  reg signed [3:0][N+7:0]t50 ;
+  reg signed [3:0][N+8:0]t75 ;
+  reg signed [3:0][N+8:0]t89 ;
+  reg signed [3:0][N+9:0]DCT4_OUTPUT ;
 
   assign a[0] = $signed(x[0]) + $signed(x[7]);
   assign a[1] = $signed(x[1]) + $signed(x[6]);
@@ -64,15 +64,15 @@ module fastDCT4
     N = 8
 )
 (
-  input signed [N:0]   x [3 :0],
-  output wire  [N+8:0] y [3 :0]
+  input signed [3 :0][N:0]x,
+  output wire  [3 :0][N+8:0]y
 );
 
-  reg signed [N+1:0]a [1:0];
-  reg signed [N+1:0]b [1:0];
+  reg signed [1:0][N+1:0]a;
+  reg signed [1:0][N+1:0]b;
 
-  reg signed [N+8:0]t36 [1:0];
-  reg signed [N+7:0]t83 [1:0];
+  reg signed [1:0][N+6:0]t36;
+  reg signed [1:0][N+7:0]t83;
 
   assign a[0] = $signed(x[0]) + $signed(x[3]);
   assign a[1] = $signed(x[1]) + $signed(x[2]);

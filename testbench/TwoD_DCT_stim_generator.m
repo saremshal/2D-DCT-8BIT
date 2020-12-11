@@ -22,17 +22,17 @@ fileID = fopen('stimTest_forJoshOnly.txt','w');
     end
     fprintf(fileID,'\n');
 
- for j=1:1000
+for j=1:1000
     %writing X values
         X = round( minVal + (maxVal-minVal)*rand(8,8) );
         for i=0:63
             xVal = floor(i/8)+1;
             yVal = mod(i,8)+1;
-            fprintf(fileID,'%s ', dec2hex( X(xVal,yVal)*2^n,3) );
+            fprintf(fileID,'%d ', X(xVal,yVal)*2^n );
         end
 
     %writing Y values
-        Y = round( dct(X) );
+        Y = round( (X) );
         
         
         %printing Y values in document
@@ -46,11 +46,11 @@ fileID = fopen('stimTest_forJoshOnly.txt','w');
             if( Y(xVal,yVal) < minVal)
                 Y(xVal,yVal) = minVal;
             end
-            fprintf(fileID,'%s ', dec2hex( Y(xVal,yVal)*2^n,3 ) );
+            fprintf(fileID,'%d ', Y(xVal,yVal)*2^n );
         end        
     %printing new line for next x and y 
-    fprintf(fileID,'\n');
- end
+    fprintf(fileID,'\n'); 
+end
  
 %closing file to be written to
 fclose(fileID);
