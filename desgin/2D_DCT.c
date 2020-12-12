@@ -18,7 +18,10 @@ int main ()
 {
     
     FILE *fp_out;
-    fp_out = fopen( "stimV3.txt", "w" );
+    fp_out = fopen( "stimV1.txt", "w" );
+
+    FILE *intermediate;
+    intermediate = fopen( "stimV1_intermediate.txt", "w" );
     
     fprintf(fp_out,"//");
 
@@ -35,7 +38,7 @@ int main ()
 
     srand(time(NULL));   // Initialization, should only be called once.
 
-    for( int numTests=0; numTests<1000;numTests++)
+    for( int numTests=0; numTests<1;numTests++)
     { 
     
         //calculating max and min values
@@ -73,6 +76,15 @@ int main ()
             }
         }
 
+        //printing intermediate values
+        for(int i = 0; i<8; i++)
+        {
+            for(int j=0;j<8;j++)
+            {
+                fprintf(intermediate,"%d ",y[i][j]);
+            }
+        }
+
         int columnX[8];
         int columnY[8];
 
@@ -85,7 +97,7 @@ int main ()
             fastDCT8(columnX,columnY);
             for(int j=0;j<8;j++)
             {
-                y[j][i] = rowY[j];
+                y[j][i] = columnY[j];
             }
         }
 

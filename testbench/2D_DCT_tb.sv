@@ -42,7 +42,7 @@ module TwoD_DCT_tb();
     
     initial
     begin
-        fd_in = $fopen( "C:/Users/Josh/Dropbox/VLSI/Project4/2D-DCT-8BIT/testbench/stimV1.txt", "r" );
+        fd_in = $fopen( "C:/Users/Josh/Dropbox/VLSI/Project4/2D-DCT-8BIT/desgin/stimV1.txt", "r" );
         if (fd_in == 0)
         begin
             $display( "Couldn't open file for read" );
@@ -58,9 +58,9 @@ module TwoD_DCT_tb();
     wire                   stim_IN_START;
     
     wire              resp_OUT_XFC;
-    wire signed[63:0][8:0] resp_OUT_Y;
+    wire signed[63:0][26:0] resp_OUT_Y;
     
-    reg signed[63:0][8:0] gold_OUT_Y;
+    reg signed[63:0][26:0] gold_OUT_Y;
     
     string  the_line;
     integer num_items;

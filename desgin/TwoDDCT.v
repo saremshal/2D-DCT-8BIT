@@ -25,7 +25,7 @@ module TwoDDCT(
   input reset,
   input signed [63:0][8:0] x,
   input IN_START,   //ready for new input
-  output reg signed [63:0][8:0]y,
+  output reg signed [63:0][26:0]y,
   output reg OUT_XFC  //output ready to send
 
 );
@@ -38,8 +38,8 @@ reg [7:0][26:0] DCT_out2;
 reg [7:0][8:0] dct_in;
 reg [7:0][17:0] dct_in2;
 
-assign dct_in = x[((STATE-1)*8)+:7];
-assign dct_in2 = trans_temp[((STATE-9))*8+:7];
+assign dct_in = x[((STATE-1)*8)+:8];
+assign dct_in2 = trans_temp[((STATE-9))*8+:8];
 
 always @(posedge clock)
 begin
@@ -50,32 +50,32 @@ begin
     end
     else if ((IN_START) && (STATE == 0))
     begin
-        STATE = 1;
+        STATE = STATE+1;
         OUT_XFC = 0;
     end
     else if ((STATE > 0) && (STATE < 9))
     begin    
-        trans_temp[(STATE-1)+(8*0)] = DCT_out[0];
-        trans_temp[(STATE-1)+(8*1)] = DCT_out[1];
-        trans_temp[(STATE-1)+(8*2)] = DCT_out[2];
-        trans_temp[(STATE-1)+(8*3)] = DCT_out[3];
-        trans_temp[(STATE-1)+(8*4)] = DCT_out[4];
-        trans_temp[(STATE-1)+(8*5)] = DCT_out[5];
-        trans_temp[(STATE-1)+(8*6)] = DCT_out[6];
-        trans_temp[(STATE-1)+(8*7)] = DCT_out[7];
-        STATE = STATE + 1;
+        trans_temp[(STATE-1)+(8*0)] <= DCT_out[0];
+        trans_temp[(STATE-1)+(8*1)] <= DCT_out[1];
+        trans_temp[(STATE-1)+(8*2)] <= DCT_out[2];
+        trans_temp[(STATE-1)+(8*3)] <= DCT_out[3];
+        trans_temp[(STATE-1)+(8*4)] <= DCT_out[4];
+        trans_temp[(STATE-1)+(8*5)] <= DCT_out[5];
+        trans_temp[(STATE-1)+(8*6)] <= DCT_out[6];
+        trans_temp[(STATE-1)+(8*7)] <= DCT_out[7];
+        STATE <= STATE + 1;
     end
     else if ((STATE > 8) && (STATE < 17))
     begin
-        y[(STATE-9)+(8*0)]= DCT_out2[0];
-        y[(STATE-9)+(8*1)]= DCT_out2[1];
-        y[(STATE-9)+(8*2)]= DCT_out2[2];
-        y[(STATE-9)+(8*3)]= DCT_out2[3];
-        y[(STATE-9)+(8*4)]= DCT_out2[4];
-        y[(STATE-9)+(8*5)]= DCT_out2[5];
-        y[(STATE-9)+(8*6)]= DCT_out2[6];
-        y[(STATE-9)+(8*7)]= DCT_out2[7];
-        STATE = STATE + 1;
+        y[(STATE-9)+(8*0)]<= DCT_out2[0];
+        y[(STATE-9)+(8*1)]<= DCT_out2[1];
+        y[(STATE-9)+(8*2)]<= DCT_out2[2];
+        y[(STATE-9)+(8*3)]<= DCT_out2[3];
+        y[(STATE-9)+(8*4)]<= DCT_out2[4];
+        y[(STATE-9)+(8*5)]<= DCT_out2[5];
+        y[(STATE-9)+(8*6)]<= DCT_out2[6];
+        y[(STATE-9)+(8*7)]<= DCT_out2[7];
+        STATE <= STATE + 1;
     end
     else if (STATE == 17)
     begin
