@@ -49,7 +49,7 @@ int main ()
         
         int x[8][8];
         int y[8][8];
-
+        int temp[8][8];
 
         //randomizing each element of input signal X
         for(int i=0; i<8;i++)
@@ -72,7 +72,7 @@ int main ()
             fastDCT8(rowX,rowY);
             for(int j=0;j<8;j++)
             {
-                y[i][j] = rowY[j];
+                temp[i][j] = rowY[j];
             }
         }
 
@@ -81,8 +81,9 @@ int main ()
         {
             for(int j=0;j<8;j++)
             {
-                fprintf(intermediate,"%d ",y[i][j]);
+                fprintf(intermediate,"%d ",temp[i][j]);
             }
+            fprintf(intermediate,"\n");
         }
 
         int columnX[8];
@@ -92,7 +93,7 @@ int main ()
         {
             for(int j=0;j<8;j++)
             {
-                columnX[j] = x[j][i];
+                columnX[j] = temp[j][i];
             }
             fastDCT8(columnX,columnY);
             for(int j=0;j<8;j++)
