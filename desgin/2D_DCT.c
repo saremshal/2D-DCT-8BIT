@@ -18,10 +18,10 @@ int main ()
 {
     
     FILE *fp_out;
-    fp_out = fopen( "stimV1.txt", "w" );
+    fp_out = fopen( "stimV2.txt", "w" );
 
     FILE *intermediate;
-    intermediate = fopen( "stimV1_intermediate.txt", "w" );
+    intermediate = fopen( "stimV2_intermediate.txt", "w" );
     
     fprintf(fp_out,"//");
 
@@ -38,7 +38,7 @@ int main ()
 
     srand(time(NULL));   // Initialization, should only be called once.
 
-    for( int numTests=0; numTests<1;numTests++)
+    for( int numTests=0; numTests<100;numTests++)
     { 
     
         //calculating max and min values

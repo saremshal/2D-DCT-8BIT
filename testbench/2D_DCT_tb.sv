@@ -54,13 +54,13 @@ module TwoD_DCT_tb();
     ////////////////////////////////////////////////////////////////////////    
     // Read in stimulus vectors, and golden response from the file
     //
-    reg  signed[63:0][8:0] stim_IN_X;
+    reg  signed[63:0][10:0] stim_IN_X;
     wire                   stim_IN_START;
     
     wire              resp_OUT_XFC;
-    wire signed[63:0][26:0] resp_OUT_Y;
+    wire signed[63:0][28:0] resp_OUT_Y;
     
-    reg signed[63:0][26:0] gold_OUT_Y;
+    reg signed[63:0][28:0] gold_OUT_Y;
     
     string  the_line;
     integer num_items;

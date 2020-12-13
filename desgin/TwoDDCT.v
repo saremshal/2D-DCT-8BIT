@@ -23,20 +23,20 @@
 module TwoDDCT(
   input clock,
   input reset,
-  input signed [63:0][8:0] x,
+  input signed [63:0][10:0] x,
   input IN_START,   //ready for new input
-  output reg signed [63:0][26:0]y,
+  output reg signed [63:0][28:0]y,
   output reg OUT_XFC  //output ready to send
 
 );
 
 reg [4:0] STATE;
-reg [63:0][8:0] trans_temp;
-reg [7:0][17:0] DCT_out;
-reg [7:0][26:0] DCT_out2;
+reg [63:0][19:0] trans_temp;
+reg [7:0][19:0] DCT_out;
+reg [7:0][28:0] DCT_out2;
  
-reg [7:0][8:0] dct_in;
-reg [7:0][17:0] dct_in2;
+reg [7:0][10:0] dct_in;
+reg [7:0][19:0] dct_in2;
 
 assign dct_in = x[((STATE-1)*8)+:8];
 assign dct_in2 = trans_temp[((STATE-9))*8+:8];
@@ -84,8 +84,8 @@ begin
     end       
 end
 
-fastDCT8 #(.N(8)) dct1(.x(dct_in), .y(DCT_out));
-fastDCT8 #(.N(17)) dct2(.x(dct_in2),.y(DCT_out2));
+fastDCT8 #(.N(10)) dct1(.x(dct_in), .y(DCT_out));
+fastDCT8 #(.N(19)) dct2(.x(dct_in2),.y(DCT_out2));
 
 
 
